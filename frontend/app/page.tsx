@@ -1,12 +1,29 @@
+import Agenda from "@/components/landing/Agenda";
+import AlbumPhotos from "@/components/landing/AlbumPhotos";
+import Confirmation from "@/components/landing/Confirmation";
+import DressCode from "@/components/landing/DressCode";
+import Hero from "@/components/landing/Hero";
+import Images from "@/components/landing/images";
+import Info from "@/components/landing/Info";
+import Nav from "@/components/landing/Nav";
+import MyFont from "@/components/MyFont";
 import { Button } from "@/components/ui/button";
-
 
 export default function Home() {
   return (
-    <div>
-      <h1>Bauti Cumple Genaro</h1>
+    <div className="flex flex-col gap-10 items-center justify-center w-screen overflow-x-hidden">
+      <MyFont></MyFont>
+      <Nav />
+      <div className="w-full bg-myColors-lightGreen">
+        <Hero />
+      </div>
 
-      <Button className="font-pacifico">Enviar</Button>
+      <Info />
+      <Confirmation />
+      <Agenda />
+      <Images />
+      <AlbumPhotos />
+      <DressCode />
     </div>
   );
 }

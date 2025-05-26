@@ -50,6 +50,7 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        myColors: { gold: "#EAA466", lightGreen: "#EAEFE9", green: "#446656" },
       },
       borderRadius: {
         lg: "var(--radius)",
