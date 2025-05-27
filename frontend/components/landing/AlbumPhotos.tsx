@@ -2,7 +2,7 @@ import React from 'react'
 
 const AlbumPhotos = () => {
   return (
-    <div>AlbumPhotos</div>
+    <div className="min-h-screen">AlbumPhotos</div>
   )
 }
 

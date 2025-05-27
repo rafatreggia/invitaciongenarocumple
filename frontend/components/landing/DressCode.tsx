@@ -2,7 +2,7 @@ import React from 'react'
 
 const DressCode = () => {
   return (
-    <div>DressCode</div>
+    <div id='dressCode' className="min-h-screen">DressCode</div>
   )
 }
 

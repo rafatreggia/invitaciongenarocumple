@@ -2,7 +2,7 @@ import React from 'react'
 
 const Info = () => {
   return (
-    <div>Info</div>
+    <div id='info' className="min-h-screen">Info</div>
   )
 }
 

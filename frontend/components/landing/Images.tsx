@@ -2,7 +2,7 @@ import React from 'react'
 
 const Images = () => {
   return (
-    <div>Images</div>
+    <div id='photos' className="min-h-screen">Images</div>
   )
 }
 

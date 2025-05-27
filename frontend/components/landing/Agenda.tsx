@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Agenda = () => {
   return (
-    <div>Agenda</div>
-  )
-}
+    <div id="calendar" className="min-h-screen">
+      Agenda
+    </div>
+  );
+};
 
-export default Agenda
+export default Agenda;

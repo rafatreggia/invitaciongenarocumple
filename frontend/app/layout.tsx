@@ -33,9 +33,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${poppins.variable} ${pacifico.variable}`}>
+    <html lang="es" className={`${poppins.variable} ${pacifico.variable} scroll-smooth`}>
       <body
-        className={`antialiased`}
+        className={`antialiased w-screen overflow-x-hidden`}
       >
         {children}
       </body>
