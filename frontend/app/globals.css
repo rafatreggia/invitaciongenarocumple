@@ -73,10 +73,12 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-poppins);
-    
   }
   .myScreen {
     @apply xl:px-20 lg:px-14 md:px-8 px-4 w-full;
+  }
+  .myTextGradient {
+    @apply bg-gradient-to-r from-[#C39C57] to-[#FDDC8F] bg-clip-text text-transparent;
   }
 }
 
