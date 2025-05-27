@@ -3,7 +3,7 @@ import AlbumPhotos from "@/components/landing/AlbumPhotos";
 import Confirmation from "@/components/landing/Confirmation";
 import DressCode from "@/components/landing/DressCode";
 import Hero from "@/components/landing/Hero";
-import Images from "@/components/landing/images";
+import Images from "@/components/landing/Images";
 import Info from "@/components/landing/Info";
 import Nav from "@/components/landing/Nav";
 import MyFont from "@/components/MyFont";
