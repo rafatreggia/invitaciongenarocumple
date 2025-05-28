@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Poppins, Pacifico } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 // Fuente principal para el contenido general
 const poppins = Poppins({
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`antialiased w-screen overflow-x-hidden`}
       >
         {children}
+        <Toaster/>
       </body>
     </html>
   );

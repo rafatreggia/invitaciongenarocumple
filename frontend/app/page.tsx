@@ -20,8 +20,11 @@ export default function Home() {
       <div className="w-full">
         <Info />
       </div>
+      <div className="w-full bg-myColors-green">
+      
+        <Confirmation />
+      </div>
 
-      <Confirmation />
       <Agenda />
       <Images />
       <AlbumPhotos />

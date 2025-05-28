@@ -125,3 +125,7 @@
     }
   }
 }
+.input-blanco::placeholder {
+  color: white;
+  opacity: 1; /* Esto asegura que no se vea desvanecido en algunos navegadores */
+}
