@@ -12,8 +12,7 @@ const Hero = () => {
           Genaro
         </h1>
         <h3 className="text-myColors-green  xl:text-left text-center text-[18px] xl:text-[22px] xl:max-w-[500px]">
-          Te invitamos a que nos acompañes en este dia tan especial para
-          nosotros
+          Te invitamos a que nos acompañes en este dia tan especial.
         </h3>
       </div>
       <img

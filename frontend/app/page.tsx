@@ -17,8 +17,10 @@ export default function Home() {
       <div className="w-full bg-myColors-lightGreen">
         <Hero />
       </div>
+      <div className="w-full">
+        <Info />
+      </div>
 
-      <Info />
       <Confirmation />
       <Agenda />
       <Images />

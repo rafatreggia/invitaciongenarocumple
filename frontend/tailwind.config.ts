@@ -62,6 +62,15 @@ const config: Config = {
         pacifico: ["var(--font-pacifico)"],
         poppins: ["var(--font-poppins)"],
       },
+      keyframes: {
+        'spin-around': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        'spin-around': 'spin-around var(--speed) linear infinite',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
