@@ -75,19 +75,33 @@ const data = [
 const Nav = () => {
   return (
     <div className="myScreen pt-3  fixed top-0 w-full flex justify-center">
-      <Dock className="items-end pb-3">
+      <div className="hidden lg:flex">
+        <Dock className="items-end pb-3">
+          {data.map((item, idx) => (
+            <DockItem
+              key={idx}
+              className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800"
+            >
+              <DockLabel>{item.title}</DockLabel>
+              <DockIcon>
+                <a href={item.href}>{item.icon}</a>
+              </DockIcon>
+            </DockItem>
+          ))}
+        </Dock>
+      </div>
+      <div className="lg:hidden flex gap-6 bg-white shadow-xl rounded-3xl py-3 px-6">
         {data.map((item, idx) => (
-          <DockItem
+          <div 
             key={idx}
-            className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800"
+            className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 p-2"
           >
-            <DockLabel>{item.title}</DockLabel>
-            <DockIcon>
+            <div>
               <a href={item.href}>{item.icon}</a>
-            </DockIcon>
-          </DockItem>
+            </div>
+          </div>
         ))}
-      </Dock>
+      </div>
     </div>
   );
 };
