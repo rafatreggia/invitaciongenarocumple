@@ -7,6 +7,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Button } from "../ui/button";
 import { Frown } from "lucide-react";
 import { Textarea } from "../ui/textarea";
+import type { CheckedState } from "@radix-ui/react-checkbox";
 
 const saleEndDate = new Date("2025-08-25T23:59:59");
 
@@ -57,7 +58,9 @@ const Confirmation = () => {
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -72,7 +75,6 @@ const Confirmation = () => {
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -82,7 +84,10 @@ const Confirmation = () => {
   };
 
   return (
-    <div id="confirm" className="myScreen py-20 flex flex-col items-center justify-center gap-8 text-white">
+    <div
+      id="confirm"
+      className="myScreen py-20 flex flex-col items-center justify-center gap-8 text-white"
+    >
       <h1 className="myTextGradient text-center font-pacifico text-[40px] xl:text-[56px] mb-4">
         Confirma Tu Asistencia
       </h1>
@@ -92,24 +97,34 @@ const Confirmation = () => {
           <div className="flex items-center gap-6 rounded-2xl bg-white/10 px-10 py-6 shadow-lg backdrop-blur-sm sm:w-[390px] w-full justify-center">
             {timeLeft.days > 0 && (
               <div className="flex flex-col items-center">
-                <span className="text-3xl md:text-5xl font-bold">{timeLeft.days}</span>
+                <span className="text-3xl md:text-5xl font-bold">
+                  {timeLeft.days}
+                </span>
                 <span className="text-lg text-white/70">Días</span>
               </div>
             )}
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold">{timeLeft.hours.toString().padStart(2, "0")}</span>
+              <span className="text-3xl md:text-5xl font-bold">
+                {timeLeft.hours.toString().padStart(2, "0")}
+              </span>
               <span className="text-lg text-white/70">Horas</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold">{timeLeft.minutes.toString().padStart(2, "0")}</span>
+              <span className="text-3xl md:text-5xl font-bold">
+                {timeLeft.minutes.toString().padStart(2, "0")}
+              </span>
               <span className="text-lg text-white/70">Min</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-5xl font-bold">{timeLeft.seconds.toString().padStart(2, "0")}</span>
+              <span className="text-3xl md:text-5xl font-bold">
+                {timeLeft.seconds.toString().padStart(2, "0")}
+              </span>
               <span className="text-lg text-white/70">Seg</span>
             </div>
           </div>
-          <span className="text-xl md:text-2xl font-medium text-white">para confirmar</span>
+          <span className="text-xl md:text-2xl font-medium text-white">
+            para confirmar
+          </span>
         </div>
       ) : (
         <div className="bg-red-600 text-white text-2xl px-8 py-5 rounded-xl font-semibold text-center shadow animate-fade-in">
@@ -117,11 +132,16 @@ const Confirmation = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-sm rounded-2xl px-10 py-6 shadow-lg flex flex-col sm:w-[390px] wfull">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white/10 backdrop-blur-sm rounded-2xl px-10 py-6 shadow-lg flex flex-col sm:w-[390px] wfull"
+      >
         <Label>Nombre Invitado</Label>
         <Input
           required
-          onChange={(e) => setInvitacion({ ...invitacion, nombreInvitado: e.target.value })}
+          onChange={(e) =>
+            setInvitacion({ ...invitacion, nombreInvitado: e.target.value })
+          }
           className="input-blanco mb-4 mt-1"
           value={invitacion.nombreInvitado}
           placeholder="Ingrese Su Nombre"
@@ -129,7 +149,9 @@ const Confirmation = () => {
 
         <Label>Nombre Pareja</Label>
         <Input
-          onChange={(e) => setInvitacion({ ...invitacion, nombrePareja: e.target.value })}
+          onChange={(e) =>
+            setInvitacion({ ...invitacion, nombrePareja: e.target.value })
+          }
           className="input-blanco mb-4 mt-1"
           value={invitacion.nombrePareja}
           placeholder="Nombre de Su Pareja"
@@ -137,8 +159,11 @@ const Confirmation = () => {
 
         <div className="flex items-center gap-3">
           <Checkbox
-            onCheckedChange={(checked: boolean | "indeterminate") => {
-              const copiaInvitacion = { ...invitacion, tieneInvitadosExtra: checked === true };
+            onCheckedChange={(checked: CheckedState) => {
+              const copiaInvitacion = {
+                ...invitacion,
+                tieneInvitadosExtra: checked === true,
+              };
               copiaInvitacion.invitadosExtra = checked === true ? [""] : [];
               setInvitacion(copiaInvitacion);
             }}
@@ -187,7 +212,7 @@ const Confirmation = () => {
 
           <div className="flex items-center gap-3 mt-2">
             <Checkbox
-              onCheckedChange={(checked: boolean | "indeterminate") =>
+              onCheckedChange={(checked: CheckedState) =>
                 setInvitacion({ ...invitacion, vegano: checked === true })
               }
               checked={invitacion.vegano}
@@ -199,7 +224,7 @@ const Confirmation = () => {
 
           <div className="flex items-center gap-3 mt-2">
             <Checkbox
-              onCheckedChange={(checked: boolean | "indeterminate") =>
+              onCheckedChange={(checked: CheckedState) =>
                 setInvitacion({ ...invitacion, vegetariano: checked === true })
               }
               checked={invitacion.vegetariano}
@@ -211,7 +236,7 @@ const Confirmation = () => {
 
           <div className="flex items-center gap-3 mt-2">
             <Checkbox
-              onCheckedChange={(checked: boolean | "indeterminate") =>
+              onCheckedChange={(checked: CheckedState) =>
                 setInvitacion({ ...invitacion, celiaco: checked === true })
               }
               checked={invitacion.celiaco}
@@ -226,12 +251,17 @@ const Confirmation = () => {
           <Textarea
             placeholder="Ingrese un comentario"
             value={invitacion.comentario}
-            onChange={(e) => setInvitacion({ ...invitacion, comentario: e.target.value })}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setInvitacion({ ...invitacion, comentario: e.target.value })
+            }
           />
         </div>
 
         <div className="mt-5 flex flex-col items-center justify-center">
-          <Button type="submit" className="myButtonGradient text-myColors-green font-bold w-full">
+          <Button
+            type="submit"
+            className="myButtonGradient text-myColors-green font-bold w-full"
+          >
             ¡SI ASISTIRÉ!
           </Button>
 
@@ -250,7 +280,6 @@ const Confirmation = () => {
   );
 };
 
-// 👇 Solución para el warning de display name
 Confirmation.displayName = "Confirmation";
 
 export default Confirmation;
