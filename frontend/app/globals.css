@@ -84,6 +84,9 @@
   .myTextGradient {
     @apply bg-gradient-to-r from-[#C39C57] to-[#FDDC8F] bg-clip-text text-transparent;
   }
+  .myButtonGradient{
+    @apply bg-gradient-to-r from-[#C39C57] to-[#FDDC8F]
+  }
 }
 
 @layer utilities {
