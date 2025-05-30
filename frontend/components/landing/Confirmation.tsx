@@ -157,7 +157,7 @@ const Confirmation = () => {
         <div className="flex items-center gap-3">
           <Checkbox
             onCheckedChange={(e: any) => {
-              let copiaInvitacion = { ...invitacion, tieneInvitadosExtra: e };
+              const copiaInvitacion = { ...invitacion, tieneInvitadosExtra: e };
               if (e === true) {
                 copiaInvitacion.invitadosExtra = [""];
               } else {
@@ -191,7 +191,7 @@ const Confirmation = () => {
                   <Input
                     required
                     onChange={(e) => {
-                      let copiaInvitacion = { ...invitacion };
+                      const copiaInvitacion = { ...invitacion };
                       copiaInvitacion.invitadosExtra[index] = e.target.value;
                       setInvitacion(copiaInvitacion);
                     }}
