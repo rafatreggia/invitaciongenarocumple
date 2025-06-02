@@ -8,6 +8,16 @@ import { Button } from "../ui/button";
 import { Frown } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import type { CheckedState } from "@radix-ui/react-checkbox";
+import { createInvitation } from "@/app/actions/confirmation";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const saleEndDate = new Date("2025-08-25T23:59:59");
 
@@ -36,11 +46,12 @@ const Confirmation = () => {
     celiaco: false,
     invitadosExtra: [],
     tieneInvitadosExtra: false,
-    confirmacion: false,
+    confirmacion: true,
     motivoDeFalta: "",
     comentario: "",
   });
-
+  const [open, setOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date();
@@ -78,9 +89,40 @@ const Confirmation = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+
     console.log(invitacion);
+    let response = await createInvitation(invitacion);
+    if (!response) {
+      toast("Hubo una Falla");
+      setLoading(false);
+
+      return;
+    }
+    toast("Se envio la Invitacion Correctamente");
+    setLoading(false);
+  };
+
+  const getMessage = async () => {
+    setLoading(true);
+    let addInvitation = { ...invitacion, confirmacion: false };
+    if (!invitacion.nombreInvitado || !invitacion.comentario) {
+      toast("Ingresa Tu Nombre y Comentario");
+      setLoading(false);
+      return;
+    }
+    let response = await createInvitation(addInvitation);
+    if (!response) {
+      toast("Hubo una Falla");
+      setLoading(false);
+
+      return;
+    }
+    toast("Nos vemos la Proxima");
+    setOpen(false);
+    setLoading(false);
   };
 
   return (
@@ -249,7 +291,6 @@ const Confirmation = () => {
 
         <div className="mt-5">
           <Textarea
-          
             placeholder="Ingrese un comentario"
             value={invitacion.comentario}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -260,16 +301,17 @@ const Confirmation = () => {
 
         <div className="mt-5 flex flex-col items-center justify-center">
           <Button
+            disabled={loading}
             type="submit"
             className="myButtonGradient text-myColors-green font-bold w-full"
           >
-            ¡SI ASISTIRÉ!
+            {loading === true ? "Enviando..." : "¡SI ASISTIRÉ!"}
           </Button>
 
           <button
             type="button"
             onClick={() => {
-              console.log("no asistire");
+              setOpen(true);
             }}
             className="mt-6 flex gap-2"
           >
@@ -277,10 +319,52 @@ const Confirmation = () => {
           </button>
         </div>
       </form>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Ups!!! Que Lastima...</DialogTitle>
+            <DialogDescription>
+              No pasa nada, te estaremos enviando las fotos del evento, si
+              queres dejanos un Mensaje para Genaro...
+            </DialogDescription>
+            <div>
+              <Label>Nombre Invitado</Label>
+              <Input
+                required
+                onChange={(e) =>
+                  setInvitacion({
+                    ...invitacion,
+                    nombreInvitado: e.target.value,
+                  })
+                }
+                className=" mb-4 mt-1"
+                value={invitacion.nombreInvitado}
+                placeholder="Ingrese Su Nombre"
+              />
+              <Label>Dejanos tu Mensaje</Label>
+              <Textarea
+                placeholder="Ingrese un comentario"
+                value={invitacion.comentario}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setInvitacion({ ...invitacion, comentario: e.target.value })
+                }
+              />
+              <div className="w-auto flex justify-end">
+                <Button
+                  disabled={loading}
+                  className="bg-myColors-green mt-5 "
+                  onClick={getMessage}
+                >
+                  {loading === true ? "Enviando..." : "Enviar"}
+                </Button>
+              </div>
+            </div>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
-
-
 
 export default Confirmation;

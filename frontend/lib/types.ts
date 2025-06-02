@@ -10,3 +10,5 @@ export interface Invitation {
   motivoDeFalta?: string;
   comentario?:string;
 }
+
+
