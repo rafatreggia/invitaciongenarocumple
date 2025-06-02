@@ -6,6 +6,7 @@ module.exports = {
       process.env.NODE_ENV === 'production' ? 'off' : 'warn',
     '@typescript-eslint/no-unused-vars':
       process.env.NODE_ENV === 'production' ? 'off' : 'warn',
+      "prefer-const": "off",
   },
 };
 
