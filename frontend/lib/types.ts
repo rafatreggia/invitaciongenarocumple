@@ -8,5 +8,5 @@ export interface Invitation {
   tieneInvitadosExtra: boolean;
   confirmacion: boolean;
   motivoDeFalta?: string;
-  comentario?: string;
+  comentario?:string;
 }

@@ -249,6 +249,7 @@ const Confirmation = () => {
 
         <div className="mt-5">
           <Textarea
+          
             placeholder="Ingrese un comentario"
             value={invitacion.comentario}
             onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
@@ -280,6 +281,6 @@ const Confirmation = () => {
   );
 };
 
-Confirmation.displayName = "Confirmation";
+
 
 export default Confirmation;
