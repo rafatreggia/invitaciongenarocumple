@@ -4,8 +4,22 @@ import { Button } from "../ui/button";
 import { ShimmerButton } from "../magicui/shimmer-button";
 
 const Agenda = () => {
+  const openCalendar = () => {
+    const title = encodeURIComponent("Cumple de Genaro 🎉");
+    const details = encodeURIComponent(
+      "¡Guardá esta fecha especial con nosotros!"
+    );
+    const location = encodeURIComponent(
+      "SUM Chacras de la Villa, Villa Allende, Cordoba, Argentina"
+    );
+    const startDate = "20250921T150000Z"; // 12:00 ARG
+    const endDate = "20250921T220000Z"; // 19:00 ARG
+
+    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
+    window.open(calendarUrl, "_blank");
+  };
   return (
-    <div id="calendar" className="min-h-screen flex flex-col items-center">
+    <div id="calendar" className="py-20 flex flex-col items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="60"
@@ -53,18 +67,7 @@ const Agenda = () => {
         background="#446656"
         className="mt-10 px-10"
         onClick={() => {
-          const title = encodeURIComponent("Cumple de Genaro 🎉");
-          const details = encodeURIComponent(
-            "¡Guardá esta fecha especial con nosotros!"
-          );
-          const location = encodeURIComponent(
-            "SUM Chacras de la Villa, Villa Allende, Cordoba, Argentina"
-          );
-          const startDate = "20250921T150000Z"; // 12:00 ARG
-          const endDate = "20250921T220000Z"; // 19:00 ARG
-
-          const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
-          window.open(calendarUrl, "_blank");
+          openCalendar();
         }}
       >
         Agendar

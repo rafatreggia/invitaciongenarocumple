@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-screen overflow-x-hidden">
+    <div className="flex flex-col items-center justify-center w-screen overflow-x-hidden">
       <MyFont></MyFont>
       <Nav />
       <div className="w-full bg-myColors-lightGreen">
@@ -21,11 +21,12 @@ export default function Home() {
         <Info />
       </div>
       <div className="w-full bg-myColors-green">
-      
         <Confirmation />
       </div>
+      <div className="bg-myColors-lightGreen w-full">
+        <Agenda />
+      </div>
 
-      <Agenda />
       <Images />
       <AlbumPhotos />
       <DressCode />

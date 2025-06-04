@@ -74,7 +74,7 @@ const data = [
 
 const Nav = () => {
   return (
-    <div className="myScreen pt-3  fixed top-0 w-full flex justify-center">
+    <div className="myScreen pt-3  fixed top-0 z-50 w-full flex justify-center">
       <div className="hidden lg:flex">
         <Dock className="items-end pb-3">
           {data.map((item, idx) => (
