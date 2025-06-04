@@ -1,6 +1,6 @@
 "use client";
 import { Invitation } from "@/lib/types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Checkbox } from "../ui/checkbox";
@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import Confetti, { ConfettiRef } from "../ui/confetti";
 
 const saleEndDate = new Date("2025-08-25T23:59:59");
 
@@ -30,6 +31,7 @@ interface TimeLeft {
 }
 
 const Confirmation = () => {
+  const confettiRef = useRef<ConfettiRef>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -101,6 +103,7 @@ const Confirmation = () => {
 
       return;
     }
+    confettiRef.current?.fire({});
     toast("Se envio la Invitacion Correctamente");
     setLoading(false);
   };
@@ -363,6 +366,10 @@ const Confirmation = () => {
           </DialogHeader>
         </DialogContent>
       </Dialog>
+      <Confetti
+        ref={confettiRef}
+        className="fixed top-1/2 left-0 w-full h-[400px] -translate-y-1/2 pointer-events-none z-80"
+      />
     </div>
   );
 };
