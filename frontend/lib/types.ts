@@ -9,6 +9,7 @@ export interface Invitation {
   confirmacion: boolean;
   motivoDeFalta?: string;
   comentario?:string;
+  _id?:string;
 }
 
 

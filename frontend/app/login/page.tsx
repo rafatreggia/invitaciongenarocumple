@@ -6,15 +6,20 @@ import { poppins } from "../fonts";
 import { Button } from "@/components/ui/button";
 import { login } from "../actions/login";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [password, setPassword] = useState<string>("");
+  let router = useRouter()
 
   const handleClick = async () => {
     let response = await login(password);
     if (!response) {
+
       toast("Contraseña Incorrecta");
+      return
     }
+  router.push("/dashboard")
     toast("Redireccion...")
   };
   return (

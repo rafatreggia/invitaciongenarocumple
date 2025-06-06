@@ -12,5 +12,8 @@ export async function login(password: string) {
     });
     cookies().set("token", token, {})
     return true
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+    return null
+  }
 }
