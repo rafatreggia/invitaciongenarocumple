@@ -1,25 +1,19 @@
-import React from 'react'
+"use client";
+import React from "react";
+import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
 
 const Images = () => {
   return (
-    <div id='photos' className="min-h-screen">Images</div>
-  )
-}
+    <div id="photos" className="min-h-screen">
+      <div className="w-full max-w-4xl">
+        <div className="min-h-[500px]  flex flex-col justify-center  rounded-lg space-y-4">
+          <div className="p-2">
+            <ThreeDPhotoCarousel />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Images
-
-
-// carousel para mostrar photos
-//https://21st.dev/cult-ui/3d-carousel/default   gusto mas esta
-//https://21st.dev/shadcnblockscom/gallery4/default
-
-
-//buttons
-//https://magicui.design/docs/components/shimmer-button
-//https://magicui.design/docs/components/pulsating-button
-
-
-//https://magicui.design/docs/components/confetti
-
-
-//https://magicui.design/docs/components/animated-circular-progress-bar
+export default Images;
