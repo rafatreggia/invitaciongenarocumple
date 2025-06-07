@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import { ThreeDPhotoCarousel } from "@/components/ui/3d-carousel";
+import ThreeDPhotoCarousel from "../ui/3d-carousel";
+
 
 const Images = () => {
   return (

@@ -182,4 +182,4 @@ function ThreeDPhotoCarousel() {
   )
 }
 
-export { ThreeDPhotoCarousel }
+export default ThreeDPhotoCarousel
