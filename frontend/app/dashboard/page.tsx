@@ -1,40 +1,59 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { poppins } from "../fonts";
 
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import {
-  Check,
-  CheckCircle,
-  CircleX,
-  ClipboardPlus,
-  Users,
-} from "lucide-react";
+import { CheckCircle, CircleX } from "lucide-react";
 
-import { Invitation } from "@/lib/types";
+import type { Invitation } from "@/lib/types";
 import { getAllInvitation } from "../actions/confirmation";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
+import {
+  type ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+
+export const description = "A radial chart with stacked sections";
+const chartData = [
+  {
+    confirmados: 0,
+    restantes: 0,
+  },
+];
+
+const chartConfig = {
+  confirmados: {
+    label: "Confirmados",
+    color: "hsl(142, 76%, 36%)", // Verde para confirmados
+  },
+  restantes: {
+    label: "Restantes",
+    color: "hsl(210, 40%, 85%)", // Gris claro para restantes
+  },
+} satisfies ChartConfig;
 
 const Page = () => {
   const [invitaciones, setInvitaciones] = useState<Invitation[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
-  let router = useRouter();
+  const router = useRouter();
 
   const handleSerch = async () => {
     setLoading(true);
-    let response = await getAllInvitation();
+    const response = await getAllInvitation();
     console.log(response);
     if (!response.ok) {
       setLoading(false);
@@ -76,7 +95,7 @@ const Page = () => {
   };
 
   const soloConfirmados = () => {
-    let invitacionesConfirmadas = invitaciones.filter(
+    const invitacionesConfirmadas = invitaciones.filter(
       (invitacion: Invitation) => invitacion.confirmacion === true
     );
     setInvitaciones(invitacionesConfirmadas);
@@ -111,6 +130,7 @@ const Page = () => {
                 {getTotalInvitados()}
               </span>
             </h1>
+
             <div className="flex gap-4">
               <Button onClick={soloConfirmados} className="bg-green-500">
                 Ocutar Ausentes
@@ -118,6 +138,84 @@ const Page = () => {
               <Button onClick={handleSerch} className="bg-blue-600">
                 Mostrar Todos
               </Button>
+            </div>
+          </div>
+          <div className="w-full flex flex-col items-center justify-center">
+            {" "}
+            <ChartContainer
+              config={chartConfig}
+              className="mx-auto h-[200px] w-full max-w-[250px]"
+            >
+              <RadialBarChart
+                data={[
+                  {
+                    confirmados: getTotalInvitados(),
+                    restantes: Math.max(0, 110 - getTotalInvitados()),
+                  },
+                ]}
+                endAngle={180}
+                innerRadius={80}
+                outerRadius={130}
+              >
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
+                  <Label
+                    content={({ viewBox }) => {
+                      if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                        return (
+                          <text
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            textAnchor="middle"
+                          >
+                            <tspan
+                              x={viewBox.cx}
+                              y={(viewBox.cy || 0) - 16}
+                              className="fill-foreground text-2xl font-bold"
+                            >
+                              {getTotalInvitados().toLocaleString()}
+                            </tspan>
+                            <tspan
+                              x={viewBox.cx}
+                              y={(viewBox.cy || 0) + 4}
+                              className="fill-muted-foreground"
+                            >
+                              de 110
+                            </tspan>
+                          </text>
+                        );
+                      }
+                    }}
+                  />
+                </PolarRadiusAxis>
+                <RadialBar
+                  dataKey="confirmados"
+                  stackId="a"
+                  cornerRadius={5}
+                  fill="var(--color-confirmados)"
+                  className="stroke-transparent stroke-2"
+                />
+                <RadialBar
+                  dataKey="restantes"
+                  fill="var(--color-restantes)"
+                  stackId="a"
+                  cornerRadius={5}
+                  className="stroke-transparent stroke-2"
+                />
+              </RadialBarChart>
+            </ChartContainer>
+            <div className="flex justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-600"></div>
+                <span>Confirmados: {getTotalInvitados()}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-gray-300"></div>
+                <span>Restantes: {Math.max(0, 110 - getTotalInvitados())}</span>
+              </div>
             </div>
           </div>
           <Table className="w-full px-6">
@@ -146,22 +244,22 @@ const Page = () => {
                         <CircleX className="text-red-600" />
                       )}
                     </TableCell>
-                    <TableCell>{invitacion.nombreInvitado}</TableCell>
-                    <TableCell>
+                    <TableCell className="capitalize">{invitacion.nombreInvitado}</TableCell>
+                    <TableCell className="capitalize">
                       {invitacion.nombrePareja ? (
                         invitacion.nombrePareja
                       ) : (
                         <CircleX className="text-red-600" />
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="capitalize">
                       {invitacion.invitadosExtra.length === 0 ? (
                         <CircleX className="text-red-600" />
                       ) : (
                         invitacion.invitadosExtra.join(" / ")
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="capitalize">
                       {invitacion.vegano && "Vegano"}
                       {invitacion.vegetariano && "  Vegetariano"}
                       {invitacion.celiaco && "  Celiaco"}
