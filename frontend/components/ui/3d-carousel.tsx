@@ -109,7 +109,7 @@ function ThreeDPhotoCarousel() {
   const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
 
   const cards = useMemo(
-    () => ["/images/fotoGenaro1.webp", "/images/ACA.png", "/images/BARILOCHE.png", "/images/BATISTELLA.png"],
+    () => ["/images/fotoGenaro1.webp","/images/genaro1.webp","/images/genaro2.webp","/images/genaro3.webp",],
     [],
   )
 
@@ -170,9 +170,7 @@ function ThreeDPhotoCarousel() {
         )}
       </AnimatePresence>
 
-      <div
-        className={`relative overflow-hidden rounded-xl ${isScreenSizeSm ? "h-[300px]" : "h-[400px]"} w-full bg-gradient-to-br from-gray-100 to-gray-200`}
-      >
+      <div className={`relative overflow-hidden rounded-xl ${isScreenSizeSm ? "h-[300px]" : "h-[400px]"} w-full`}>
         <Carousel handleClick={handleClick} controls={controls} cards={cards} isCarouselActive={isCarouselActive} />
       </div>
 
