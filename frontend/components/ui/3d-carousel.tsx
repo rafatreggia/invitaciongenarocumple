@@ -1,13 +1,19 @@
-"use client"
+"use client";
 
-import { memo, useEffect, useMemo, useState } from "react"
-import { AnimatePresence, motion, useAnimation, useMotionValue, useTransform } from "framer-motion"
-import { useMediaQuery } from "@/components/hooks/use-media-query"
-import { X } from "lucide-react"
+import { memo, useEffect, useMemo, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import { useMediaQuery } from "@/components/hooks/use-media-query";
+import { X } from "lucide-react";
 
-const duration = 0.15
-const transition = { duration, ease: [0.32, 0.72, 0, 1] }
-const transitionOverlay = { duration: 0.3, ease: [0.32, 0.72, 0, 1] }
+const duration = 0.15;
+const transition = { duration, ease: [0.32, 0.72, 0, 1] };
+const transitionOverlay = { duration: 0.3, ease: [0.32, 0.72, 0, 1] };
 
 const Carousel = memo(
   ({
@@ -16,24 +22,27 @@ const Carousel = memo(
     cards,
     isCarouselActive,
   }: {
-    handleClick: (imgUrl: string, index: number) => void
-    controls: any
-    cards: string[]
-    isCarouselActive: boolean
+    handleClick: (imgUrl: string, index: number) => void;
+    controls: any;
+    cards: string[];
+    isCarouselActive: boolean;
   }) => {
-    const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
-    const isScreenSizeMd = useMediaQuery("(max-width: 768px)")
+    const isScreenSizeSm = useMediaQuery("(max-width: 640px)");
+    const isScreenSizeMd = useMediaQuery("(max-width: 768px)");
 
     // Ajustar el tamaño del cilindro según el tamaño de pantalla
-    const cylinderWidth = isScreenSizeSm ? 800 : isScreenSizeMd ? 1200 : 1600
-    const faceCount = cards.length
-    const faceWidth = cylinderWidth / faceCount
-    const radius = cylinderWidth / (2 * Math.PI)
-    const rotation = useMotionValue(0)
-    const transform = useTransform(rotation, (value) => `rotate3d(0, 1, 0, ${value}deg)`)
+    const cylinderWidth = isScreenSizeSm ? 800 : isScreenSizeMd ? 1200 : 1600;
+    const faceCount = cards.length;
+    const faceWidth = cylinderWidth / faceCount;
+    const radius = cylinderWidth / (2 * Math.PI);
+    const rotation = useMotionValue(0);
+    const transform = useTransform(
+      rotation,
+      (value) => `rotate3d(0, 1, 0, ${value}deg)`
+    );
 
     // Tamaño de imagen responsivo
-    const imageSize = isScreenSizeSm ? 120 : isScreenSizeMd ? 160 : 200
+    const imageSize = isScreenSizeSm ? 120 : isScreenSizeMd ? 160 : 200;
 
     return (
       <div
@@ -53,7 +62,10 @@ const Carousel = memo(
             width: cylinderWidth,
             transformStyle: "preserve-3d",
           }}
-          onDrag={(_, info) => isCarouselActive && rotation.set(rotation.get() + info.offset.x * 0.05)}
+          onDrag={(_, info) =>
+            isCarouselActive &&
+            rotation.set(rotation.get() + info.offset.x * 0.05)
+          }
           onDragEnd={(_, info) =>
             isCarouselActive &&
             controls.start({
@@ -96,37 +108,53 @@ const Carousel = memo(
           ))}
         </motion.div>
       </div>
-    )
-  },
-)
+    );
+  }
+);
 
-Carousel.displayName = "Carousel"
+Carousel.displayName = "Carousel";
 
 function ThreeDPhotoCarousel() {
-  const [activeImg, setActiveImg] = useState<string | null>(null)
-  const [isCarouselActive, setIsCarouselActive] = useState(true)
-  const controls = useAnimation()
-  const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
+  const [activeImg, setActiveImg] = useState<string | null>(null);
+  const [isCarouselActive, setIsCarouselActive] = useState(true);
+  const controls = useAnimation();
+  const isScreenSizeSm = useMediaQuery("(max-width: 640px)");
 
   const cards = useMemo(
-    () => ["/images/fotoGenaro1.webp","/images/genaro1.webp","/images/genaro2.webp","/images/genaro3.webp",],
-    [],
-  )
+    () => [
+      "/images/gena1.webp",
+      "/images/gena2.webp",
+      "/images/gena3.webp",
+      "/images/gena4.webp",
+      "/images/gena5.webp",
+      "/images/gena6.webp",
+      "/images/gena7.webp",
+      "/images/gena8.webp",
+      "/images/gena9.webp",
+      "/images/gena10.webp",
+      "/images/gena11.webp",
+      "/images/gena12.webp",
+      "/images/gena13.webp",
+      "/images/gena14.webp",
+      "/images/gena15.webp",
+    ],
+    []
+  );
 
   useEffect(() => {
-    console.log("Cards loaded:", cards)
-  }, [cards])
+    console.log("Cards loaded:", cards);
+  }, [cards]);
 
   const handleClick = (imgUrl: string) => {
-    setActiveImg(imgUrl)
-    setIsCarouselActive(false)
-    controls.stop()
-  }
+    setActiveImg(imgUrl);
+    setIsCarouselActive(false);
+    controls.stop();
+  };
 
   const handleClose = () => {
-    setActiveImg(null)
-    setIsCarouselActive(true)
-  }
+    setActiveImg(null);
+    setIsCarouselActive(true);
+  };
 
   return (
     <motion.div layout className="relative w-full">
@@ -170,16 +198,26 @@ function ThreeDPhotoCarousel() {
         )}
       </AnimatePresence>
 
-      <div className={`relative overflow-hidden rounded-xl ${isScreenSizeSm ? "h-[300px]" : "h-[400px]"} w-full`}>
-        <Carousel handleClick={handleClick} controls={controls} cards={cards} isCarouselActive={isCarouselActive} />
+      <div
+        className={`relative overflow-hidden rounded-xl ${isScreenSizeSm ? "h-[300px]" : "h-[400px]"} w-full`}
+      >
+        <Carousel
+          handleClick={handleClick}
+          controls={controls}
+          cards={cards}
+          isCarouselActive={isCarouselActive}
+        />
       </div>
 
       {/* Instrucciones de uso */}
       <div className="mt-4 text-center text-sm text-gray-600">
-        <p>Arrastra para rotar el carrusel • Haz clic en una imagen para ampliarla</p>
+        <p>
+          Arrastra para rotar el carrusel • Haz clic en una imagen para
+          ampliarla
+        </p>
       </div>
     </motion.div>
-  )
+  );
 }
 
-export default ThreeDPhotoCarousel
+export default ThreeDPhotoCarousel;

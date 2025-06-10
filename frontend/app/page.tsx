@@ -32,13 +32,15 @@ export default function Home() {
       <div className="bg-myColors-lightGreen w-full flex items-center justify-center">
         <Images />
       </div>
+      <div className="bg-myColors-lightGreen w-full flex items-center justify-center">
+        <AlbumPhotos />
+      </div>
 
-      <AlbumPhotos />
       <DressCode />
 
       <div className="w-full myScreen">
         <Footer
-          logo={<PandaIcon className="h-10 w-10" />}
+          logo={<img src="/images/panda.webp" className="h-10 w-10" />}
           brandName="Cumple Genaro"
           socialLinks={[
             {
@@ -74,10 +76,21 @@ export default function Home() {
           ]}
           legalLinks={[]}
           copyright={{
-            text: "© 2025 Desarrollado por Rafa Treggia",
-            license: "All rights reserved",
+            text: "",
+            license: "",
           }}
         />
+        <div className="w-full flex items-center justify-center gap-3 mb-3">
+          <img
+            src="/images/neurostack.webp"
+            className="h-10 w-10 rounded-3xl"
+            alt="logo desarrolladora"
+          />
+          <div className="flex flex-col items-center justify-center text-gray-400 font-light text-[13px]">
+            <h3>© 2025 Desarrollado por Rafa Treggia</h3>
+            <h3>All rights reserved</h3>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 
-const photos:any = []
+const photos: any = [];
 const Page = () => {
   return (
     <div>
       <div className="min-h-screen bg-[#EAEFE9] text-[#446656]">
         <header className="text-center py-10">
-          <h1 className="text-4xl font-bold">🎉 Genaro cumple 1 año 🎂</h1>
+          <h1 className="text-4xl font-bold">Genaro cumplió 1 año</h1>
           <p className="mt-2 text-lg">
             ¡Mirá todas las fotos de su primer cumple!
           </p>
@@ -19,7 +19,7 @@ const Page = () => {
               Las fotos estarán disponibles pronto 😊
             </p>
           ) : (
-            photos.map((src:any, idx:any) => (
+            photos.map((src: any, idx: any) => (
               <div
                 key={idx}
                 className="rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition"
