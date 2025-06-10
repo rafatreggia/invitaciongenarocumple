@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="myScreen min-h-[100vh] flex xl:flex-row xl:justify-around flex-col justify-center items-center gap-10 xl:gap-0">
+    <div id="hero" className="myScreen min-h-[100vh] flex xl:flex-row xl:justify-around flex-col justify-center items-center gap-10 xl:gap-0">
       <div className="xl:pt-0 pt-28">
         {" "}
         <h2 className="xl:text-[48px] text-[32px] font-semibold text-myColors-green text-center xl:text-left">

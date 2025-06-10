@@ -4,7 +4,7 @@ import { Cake } from "lucide-react";
 
 const Info = () => {
   return (
-    <div className="myScreen  bg-white flex xl:flex-row  xl:justify-around flex-col justify-center items-center gap-20 xl:gap-0 py-20">
+    <div id="info" className="myScreen  bg-white flex xl:flex-row  xl:justify-around flex-col justify-center items-center gap-20 xl:gap-0 py-20">
       <div className="text-myColors-green text-center max-w-[500px] flex flex-col items-center justify-center">
         <h1 className="myTextGradient font-pacifico text-[48px] xl:text-[56px] mb-4">
           Bautismo
