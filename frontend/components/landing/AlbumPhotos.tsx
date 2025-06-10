@@ -4,7 +4,7 @@ import { QRCodeCanvas } from "qrcode.react";
 
 const AlbumPhotos = () => {
   return (
-    <div className="min-h-[100px] flex flex-col items-center justify-center gap-3 mb-6">
+    <div className="min-h-[100px] flex flex-col items-center justify-center gap-2 mb-6">
       
       <h1 className="myTextGradient text-center font-pacifico text-[32px] xl:text-[50px] mb-4 pb-4 mt-5">
         Album Del Bauti-Cumple
