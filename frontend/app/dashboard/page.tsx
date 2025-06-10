@@ -25,7 +25,7 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export const description = "A radial chart with stacked sections";
+const description = "A radial chart with stacked sections";
 const chartData = [
   {
     confirmados: 0,
