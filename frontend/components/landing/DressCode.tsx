@@ -2,7 +2,7 @@ import React from "react";
 
 const DressCode = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-2">
+    <div className="min-h-[200px] flex flex-col items-center justify-center gap-2">
       <h1 className="myTextGradient text-center font-pacifico text-[32px] xl:text-[50px] mt-5">
         Dress Code
       </h1>

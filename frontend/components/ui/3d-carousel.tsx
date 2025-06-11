@@ -210,7 +210,7 @@ function ThreeDPhotoCarousel() {
       </div>
 
       {/* Instrucciones de uso */}
-      <div className="mt-4 text-center text-sm text-gray-600">
+      <div className="mt-4 text-center lg:text-sm text-xs text-gray-600">
         <p>
           Arrastra para rotar el carrusel • Haz clic en una imagen para
           ampliarla
