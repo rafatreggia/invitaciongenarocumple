@@ -35,8 +35,9 @@ export default function Home() {
       <div className="bg-myColors-lightGreen w-full flex items-center justify-center">
         <AlbumPhotos />
       </div>
-
-      <DressCode />
+      <div className="bg-myColors-lightGreen w-full flex items-center justify-center">
+        <DressCode />
+      </div>
 
       <div className="w-full myScreen">
         <Footer
