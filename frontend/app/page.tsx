@@ -72,7 +72,7 @@ export default function Home() {
           mainLinks={[
             { href: "#hero", label: "Home" },
             { href: "#info", label: "Info" },
-            { href: "#confirmacion", label: "Confirmacion" },
+            { href: "#confirm", label: "Confirmacion" },
             { href: "#photos", label: "Fotos" },
           ]}
           legalLinks={[]}
